@@ -53,9 +53,7 @@ pipeline {
                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'who should i say hello')
                 }
             }
-            when {
-                expression { "$params.DEPLOY" == "true" }
-            }
+        
             steps {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds') {
