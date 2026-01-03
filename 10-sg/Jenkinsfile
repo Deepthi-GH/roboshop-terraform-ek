@@ -58,7 +58,7 @@ pipeline {
         }  
         
         stage('Parallel Trigger') {
-            Parallel {
+            parallel {
                 stage( 'Bastion' ) {
                     steps {
                         script {
@@ -71,7 +71,7 @@ pipeline {
                 }
 
             stage('SG Rules')   {
-                stpes {
+                steps {
                     script {
                         build job: '30-sg-rules',
                         wait: false,
