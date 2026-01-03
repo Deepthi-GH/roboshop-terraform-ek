@@ -21,7 +21,7 @@ pipeline {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds') {
                         sh """  
-                             cd 00-vpc
+                             cd 10-sg
                              terraform init
                         """
                     }
@@ -34,7 +34,7 @@ pipeline {
                 script { 
                     withAWS(region:'us-east-1',credentials:'aws-creds') {
                      sh """
-                        cd 00-vpc
+                        cd 10-sg
                         terraform plan
 
                      """
@@ -44,40 +44,28 @@ pipeline {
         }
         }
         stage('Deploy') {
-            input {
-                message "should we continue?"
-                ok "Yes, we should"
-                submitter "alice,bob"
+            // input {
+            //     message "should we continue?"
+            //     ok "Yes, we should"
+            //     submitter "alice,bob"
 
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'who should i say hello')
-                }
-            }
+            //     parameters {
+            //         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'who should i say hello')
+            //     }
+            // }
         
             steps {
                 script {
                     withAWS(region:'us-east-1',credentials:'aws-creds') {
                     sh """
-                        cd 00-vpc
-                        terraform destroy -auto-approve
+                        cd 10-sg
+                        terraform apply -auto-approve
                     """
                     }
                 }
                 
             }
-        }
-
-    }
-
-    stage('Trigger SG') {
-        steps {
-            script {
-                build job: '10-sg',
-                wait: false, // wait for completeion
-                propagate: false // is there any dependecy on 00-vpc to 10-sg
-
-            }
-        }
+        }        
     }
 
     post {
