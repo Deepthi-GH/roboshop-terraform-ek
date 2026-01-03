@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "catalogue" {
-  name                 = "${project_name}/catalogue"
+  name                 = "${var.project_name}/catalogue"
   image_tag_mutability = "MUTABLE" // You are allowed to overwrite an existing image tag in the ECR repository.
 
   image_scanning_configuration {
@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "catalogue" {
   force_delete = true
 }
 resource "aws_ecr_repository" "user" {
-  name                 = "${project_name}/user"
+  name                 = "${var.project_name}/user"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -18,7 +18,7 @@ resource "aws_ecr_repository" "user" {
 }
 
 resource "aws_ecr_repository" "cart" {
-  name                 = "${project_name}/cart"
+  name                 = "${var.project_name}/cart"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -28,7 +28,7 @@ resource "aws_ecr_repository" "cart" {
 }
 
 resource "aws_ecr_repository" "shipping" {
-  name                 = "${project_name}/shipping"
+  name                 = "${var.project_name}/shipping"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -38,7 +38,7 @@ resource "aws_ecr_repository" "shipping" {
 }
 
 resource "aws_ecr_repository" "payment" {
-  name                 = "${project_name}/payment"
+  name                 = "${var.project_name}/payment"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -48,7 +48,7 @@ resource "aws_ecr_repository" "payment" {
 }
 
 resource "aws_ecr_repository" "frontend" {
-  name                 = "${project_name}/frontend"
+  name                 = "${var.project_name}/frontend"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
