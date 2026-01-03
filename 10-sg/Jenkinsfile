@@ -83,7 +83,7 @@ pipeline {
             
 
                 stage('40-ecr')   {
-                    stpes {
+                    steps {
                         script {
                             build job: '40-ecr',
                             wait: false,
@@ -96,7 +96,7 @@ pipeline {
 
 
              stage('ACM')   {
-                stpes {
+                steps {
                     script {
                         build job: '70-acm',
                         wait: false,
@@ -107,7 +107,7 @@ pipeline {
             }
 
                 stage('EKS')   {
-                    stpes {
+                    steps {
                         script {
                             build job: '90-eks',
                             wait: false,
